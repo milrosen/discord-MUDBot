@@ -1,0 +1,16 @@
+{
+  "name": "discord-bot",
+  "version": "1.0.0",
+  "description": "a bot that turns a discord server into a MUD that follows a modified DnD 5e ruleset",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Milton Rosenbaum",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.1.1",
+    "eslint": "^6.8.0"
+  },
+  "devDependencies": {}
+}

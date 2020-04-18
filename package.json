@@ -4,7 +4,7 @@
   "description": "a bot that turns a discord server into a MUD that follows a modified DnD 5e ruleset",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "author": "Milton Rosenbaum",
   "license": "ISC",

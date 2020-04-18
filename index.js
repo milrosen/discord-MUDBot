@@ -6,7 +6,7 @@ client.once('ready', () => {
 	console.log('Ready!');
 });
 
-client.on{'message', message => {
+client.on('message', message => {
 	if(message.content.startsWith(`${prefix}beep`)) {
 		message.channel.send('boop')
 	}

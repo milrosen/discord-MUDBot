@@ -7,8 +7,8 @@ client.once('ready', () => {
 });
 
 client.on('message', message => {
-	if(message.content.startsWith(`${prefix}ping`)) {
-		message.channel.send('Pong')
+	if(message.content.startsWith(`${prefix}beep`)) {
+		message.channel.send('boop')
 	}
 });
 

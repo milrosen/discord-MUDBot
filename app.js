@@ -1,22 +1,55 @@
+// require/setup external stuff
 const Discord = require('discord.js');
-const client = new Discord.Client();
-const {prefix} = require('./config')
+const clientDs = new Discord.Client();
+clientDs.commands = new Discord.Collection();
+const PostgreSQL = require('pg');
+const clientPg = new PostgreSQL.Client({
+	connectionString: process.env.DATABASE_URL,
+	ssl: true,
+});
+const fs = require('fs');
 
+// require/setup stuff I've written
+const { prefix } = require('./config');
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
-// keep BOT_TOKEN in its own file and also on Heroku
+// keep env variables local for easier testing
 if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
-  console.log('not in production')
+	require('dotenv').config();
+	console.log('not in production');
 }
 
-client.once('ready', () => {
+// initialize heroku PostgreSQL
+clientPg.connect();
+
+// discord section
+clientDs.once('ready', () => {
 	console.log('Ready!');
 });
 
-client.on('message', message => {
-	if(message.content.startsWith(`${prefix}beep`)) {
-		message.channel.send('boop')
+// command handler
+for (const file of commandFiles) {
+	const command = require(`./commands/${file}`);
+
+	// set a new item in the Collection
+	// with the key as the command name and the value as the exported module
+	clientDs.commands.set(command.name, command);
+}
+
+clientDs.on('message', message => {
+	if (!message.content.startsWith(prefix) || message.author.bot) return;
+	const args = message.content.slice(prefix.length).split(/ +/);
+	const command = args.shift().toLowerCase();
+
+	if (!clientDs.commands.has(command)) return;
+
+	try {
+		clientDs.commands.get(command).execute(message, args);
+	}
+	catch (error) {
+		console.error(error);
+		message.reply('there was an error trying to execute that command!');
 	}
 });
 
-client.login(process.env.BOT_TOKEN);
+clientDs.login(process.env.BOT_TOKEN);

@@ -1,7 +1,6 @@
 // require/setup external stuff
 const Discord = require('discord.js');
 const clientDs = new Discord.Client();
-clientDs.commands = new Discord.Collection();
 const fs = require('fs');
 // require/setup stuff I've written
 const { prefix } = require('./config');
@@ -19,6 +18,8 @@ const sequelize = new Sequelize(process.env.DATABASE_URL);
 
 // discord section
 const cooldowns = new Discord.Collection();
+clientDs.commands = new Discord.Collection();
+let pseudoCommands = new Map();
 
 clientDs.once('ready', () => {
 	console.log('Ready!');
@@ -33,13 +34,30 @@ for (const file of commandFiles) {
 	clientDs.commands.set(command.name, command);
 }
 
+
 clientDs.on('message', message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
-
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const commandName = args.shift().toLowerCase();
 
-	if (!clientDs.commands.has(commandName)) return;
+	if (!clientDs.commands.has(commandName)) {
+		if (pseudoCommands.has(commandName) && pseudoCommands.get(commandName).has(message.author.id)) {
+			try {
+				const pseudoCommandInfo = pseudoCommands.get(commandName);
+				const command = clientDs.commands.get(pseudoCommandInfo.get(message.author.id));
+				const pseudoCommand = command[commandName](message, args, sequelize, Op);
+				pseudoCommands.forEach(cmd => {
+					cmd.delete(message.author.id);
+				});
+				if (pseudoCommand) pseudoCommands = new Map([...pseudoCommands, ...pseudoCommand]);
+			}
+			catch(err) {
+				console.error(err);
+				message.channel.send('there was an error executing that command, please use `help` for more info');
+			}
+		}
+		return;
+	}
 	const command = clientDs.commands.get(commandName);
 
 	// cooldowns
@@ -55,12 +73,15 @@ clientDs.on('message', message => {
 			return message.reply((typeof (command['cooldownMessage']) === 'function') ? command.cooldownMessage(timeLeft) : `please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${command.name}\` command.`);
 		}
 	}
+
 	timestamps.set(message.author.id, now);
 	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
 	// execute command
 	try {
-		command.execute(message, args, sequelize, Op);
+		// handles pseudocommands, lets users call other methods of a command only after they run the first execute method in a command
+		const pseudoCommand = command.execute(message, args, sequelize, Op);
+		if (pseudoCommand) pseudoCommands = new Map([...pseudoCommands, ...pseudoCommand]);
 	}
 	catch (error) {
 		console.error(error);

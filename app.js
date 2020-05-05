@@ -45,13 +45,21 @@ clientDs.on('message', message => {
 			try {
 				const pseudoCommandInfo = pseudoCommands.get(commandName);
 				const command = clientDs.commands.get(pseudoCommandInfo.get(message.author.id));
-				const pseudoCommand = command[commandName](message, args, sequelize, Op);
+				command[commandName]({ msg: message, arg: args, seq: sequelize, op: Op })
+					.then((pseudoCommand) => {
+						if (pseudoCommand) {
+							pseudoCommands.forEach(cmd => {
+								cmd.delete(message.author.id);
+							});
+							pseudoCommands = new Map([...pseudoCommands, ...pseudoCommand]);
+						}
+					})
+					.catch(console.log);
 				pseudoCommands.forEach(cmd => {
 					cmd.delete(message.author.id);
 				});
-				if (pseudoCommand) pseudoCommands = new Map([...pseudoCommands, ...pseudoCommand]);
 			}
-			catch(err) {
+			catch (err) {
 				console.error(err);
 				message.channel.send('there was an error executing that command, please use `help` for more info');
 			}
@@ -80,8 +88,10 @@ clientDs.on('message', message => {
 	// execute command
 	try {
 		// handles pseudocommands, lets users call other methods of a command only after they run the first execute method in a command
-		const pseudoCommand = command.execute(message, args, sequelize, Op);
-		if (pseudoCommand) pseudoCommands = new Map([...pseudoCommands, ...pseudoCommand]);
+		command.execute({ msg: message, arg: args, seq: sequelize, op: Op }, clientDs.commands)
+			.then((pseudoCommand) => {
+				if (pseudoCommand) pseudoCommands = new Map([...pseudoCommands, ...pseudoCommand]);
+			});
 	}
 	catch (error) {
 		console.error(error);

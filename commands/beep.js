@@ -7,7 +7,7 @@
 module.exports = {
 	name: 'beep',
 	description: 'Beep!',
-	execute: async ({ msg, arg }) => {
-		msg.channel.send(`Boop ${arg}`);
+	execute: async ({ message, args }) => {
+		message.channel.send(`Boop ${args}`);
 	},
 };

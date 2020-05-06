@@ -1,20 +1,20 @@
 module.exports = {
 	name: 'info',
 	description: 'calls the info method in other commands',
-	execute: async ({ msg, arg }, ...rest) => {
+	execute: async ({ message, args }, ...rest) => {
 		const commands = rest[0];
-		if (arg[0]) {
-			if (commands.has(arg[0])) {
-				const command = commands.get(arg[0]);
-				if (Object.hasOwnProperty.call(command, 'info')) command.info({ 'msg': msg, 'arg': arg });
-				else msg.channel.send(command.description);
+		if (args[0]) {
+			if (commands.has(args[0])) {
+				const command = commands.get(args[0]);
+				if (Object.hasOwnProperty.call(command, 'info')) command.info({ 'message': message, 'args': args });
+				else message.channel.send(command.description);
 			}
-			if (Object.prototype.hasOwnProperty.call(this, arg[0])) {
+			if (Object.prototype.hasOwnProperty.call(this, args[0])) {
 				try {
-					this[arg[0]]({ 'msg': msg, 'arg': arg });
+					this[args[0]]({ 'message': message, 'args': args });
 				}
 				catch {
-					msg.channel.send('there was an error with this info command, try using info with no arguments instead');
+					message.channel.send('there was an error with this info command, try using info with no arguments instead');
 				}
 			}
 		}
@@ -23,10 +23,10 @@ module.exports = {
 			commands.forEach(cmd => {
 				str += `	${cmd.name}: ${cmd.description}\n`;
 			});
-			msg.channel.send(str);
+			message.channel.send(str);
 		}
 	},
-	defaultInfo: async ({ msg }) => {
-		msg.channel.send('info with argument `defaultinfo`');
+	defaultInfo: async ({ message }) => {
+		message.channel.send('info with argument `defaultinfo`');
 	},
 };

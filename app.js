@@ -19,7 +19,7 @@ const sequelize = new Sequelize(process.env.DATABASE_URL);
 // discord section
 const cooldowns = new Discord.Collection();
 clientDs.commands = new Discord.Collection();
-let pseudoCommands = new Map();
+let responses = new Map();
 
 clientDs.once('ready', () => {
 	console.log('Ready!');
@@ -41,28 +41,13 @@ clientDs.on('message', message => {
 	const commandName = args.shift().toLowerCase();
 
 	if (!clientDs.commands.has(commandName)) {
-		if (pseudoCommands.has(commandName) && pseudoCommands.get(commandName).has(message.author.id)) {
-			try {
-				const pseudoCommandInfo = pseudoCommands.get(commandName);
-				const command = clientDs.commands.get(pseudoCommandInfo.get(message.author.id));
-				command[commandName]({ msg: message, arg: args, seq: sequelize, op: Op })
-					.then((pseudoCommand) => {
-						if (pseudoCommand) {
-							pseudoCommands.forEach(cmd => {
-								cmd.delete(message.author.id);
-							});
-							pseudoCommands = new Map([...pseudoCommands, ...pseudoCommand]);
-						}
-					})
-					.catch(console.log);
-				pseudoCommands.forEach(cmd => {
-					cmd.delete(message.author.id);
-				});
-			}
-			catch (err) {
-				console.error(err);
-				message.channel.send('there was an error executing that command, please use `help` for more info');
-			}
+		if (responses.has(message.author.id) && responses.get(message.author.id).has(commandName)) {
+			responses.get(message.author.id).get(commandName)({ 'message': message, 'args': args, 'seq': sequelize, 'op': Op })
+				.then((response) => {
+					if (response) responses = new Map(...responses, response);
+				})
+				.catch(console.log);
+			responses.delete(message.author.id);
 		}
 		return;
 	}
@@ -88,10 +73,11 @@ clientDs.on('message', message => {
 	// execute command
 	try {
 		// handles pseudocommands, lets users call other methods of a command only after they run the first execute method in a command
-		command.execute({ msg: message, arg: args, seq: sequelize, op: Op }, clientDs.commands)
-			.then((pseudoCommand) => {
-				if (pseudoCommand) pseudoCommands = new Map([...pseudoCommands, ...pseudoCommand]);
-			});
+		command.execute({ 'message': message, 'args': args, 'seq': sequelize, 'op': Op }, clientDs.commands)
+			.then((response) => {
+				if (response) responses = new Map(...responses, response);
+			})
+			.catch(console.log);
 	}
 	catch (error) {
 		console.error(error);

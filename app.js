@@ -13,7 +13,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // initialize Sequelize
-const { Sequelize, Op } = require('sequelize');
+const { Sequelize } = require('sequelize');
 const sequelize = new Sequelize(process.env.DATABASE_URL);
 
 // discord section
@@ -41,10 +41,11 @@ clientDs.on('message', message => {
 	const commandName = args.shift().toLowerCase();
 
 	if (!clientDs.commands.has(commandName)) {
+		// check for responses
 		if (responses.has(message.author.id) && responses.get(message.author.id).has(commandName)) {
-			responses.get(message.author.id).get(commandName)({ 'message': message, 'args': args, 'seq': sequelize, 'op': Op })
+			responses.get(message.author.id).get(commandName)({ 'message': message, 'args': args, 'sequelize': sequelize })
 				.then((response) => {
-					if (response) responses = new Map(...responses, response);
+					if (response) responses = new Map([...responses, ...response]);
 				})
 				.catch(console.log);
 			responses.delete(message.author.id);
@@ -73,9 +74,10 @@ clientDs.on('message', message => {
 	// execute command
 	try {
 		// handles pseudocommands, lets users call other methods of a command only after they run the first execute method in a command
-		command.execute({ 'message': message, 'args': args, 'seq': sequelize, 'op': Op }, clientDs.commands)
+		command.execute({ 'message': message, 'args': args, 'sequelize': sequelize }, clientDs.commands)
+		// if the command returns a response, add id to the responses map
 			.then((response) => {
-				if (response) responses = new Map(...responses, response);
+				if (response) responses = new Map([...responses, ...response]);
 			})
 			.catch(console.log);
 	}

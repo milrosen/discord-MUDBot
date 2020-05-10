@@ -1,0 +1,79 @@
+{
+	"sorcerer": {
+		"hit_die": 6,
+		"name": "sorcerer",
+		"plural": "Sorcerers",
+		"description": "Embued with Dragon Blood at some time in your characters past, Sorcerers are able to weild raw and powerfull elemental magics to devastate their foes.",
+		"proficiencies": {
+			"armor": null,
+			"weapons": [
+				"dagger", "dart", "sling", "quarterstaff", "light crossbow"
+			],
+			"saving_throws": [
+				"constitution", "charisma"
+			]
+		},
+		"starting_equipment": [
+			"light crossbow",
+			"20 bolts",
+			"dagger",
+			"dagger"
+		],
+		"class_table": [
+			{
+				"cantrips_known": [4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
+				"spells_known": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 12, 13, 13, 14, 14, 15, 15, 15, 15],
+				"spell_slots": [
+					[2],
+					[3],
+					[4, 2],
+					[4, 3],
+					[4, 3, 2],
+					[4, 3, 3],
+					[4, 3, 3, 1],
+					[4, 3, 3, 2],
+					[4, 3, 3, 3, 1],
+					[4, 3, 3, 3, 2],
+					[4, 3, 3, 3, 2, 1],
+					[4, 3, 3, 3, 2, 1],
+					[4, 3, 3, 3, 2, 1, 1],
+					[4, 3, 3, 3, 2, 1, 1],
+					[4, 3, 3, 3, 2, 1, 1, 1],
+					[4, 3, 3, 3, 2, 1, 1, 1],
+					[4, 3, 3, 3, 2, 1, 1, 1, 1],
+					[4, 3, 3, 3, 3, 1, 1, 1, 1],
+					[4, 3, 3, 3, 3, 2, 1, 1, 1],
+					[4, 3, 3, 3, 3, 2, 2, 1, 1]
+				]
+			}
+		]
+	},
+	"types": [
+		"Acid", "Cold", "Fire", "Lightning", "Poison"
+	],
+	"unlocked_abilities": [
+		{
+			"level": 1,
+			"name": "Draconic Resilience",
+			"description": "when you level up, your HP max increases by one. When you aren't wearing armor your AC is equal to 13 + your dex"
+		},
+		{
+			"level": 6,
+			"name": "Elemental Affinity",
+			"description": "When you cast a spell that deals damage of the type you've chosen, add your charisma modefier to the damage of the spell, you may spend one sorcery point to gain resistance to that damage type"
+		},
+		{
+			"level": 14,
+			"name": "Dragon Wings",
+			"description": "As a bonus action on your turn, you may choose to manifest dragon wings on your back, you gain a flight speed equal to your current speed"
+		},
+		{
+			"level": 18,
+			"name": "Draconic Presence",
+			"description": "You may spend 5 Sorcery Points to draw on your draconic power and exude an aura of either fear or awe."
+		}
+	],
+	"fighter": {},
+	"bard": {},
+	"ranger": {}
+}

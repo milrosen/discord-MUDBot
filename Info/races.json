@@ -1,0 +1,191 @@
+{
+	"dwarf": {
+		"description": "Kingdoms rich in ancient grandeur, halls carved into the roots of mountains, the echoing of picks and hammers in deep mines and blazing forges, a commitment to clan and tradition, and a burning hatred of goblins and orcs",
+		"name": "dwarf",
+		"plural": "Dwarves",
+		"sampleNames": [
+			"Ori",
+			"Borin",
+			"Grór",
+			"Mîm",
+			"Durin",
+			"Khîm",
+			"Thráin",
+			"Gróin",
+			"Mîm",
+			"Náli"
+		],
+		"ability_score_increase": {
+			"constitution": 2
+		},
+		"age": {
+			"young": 50,
+			"lifespan": 350
+		},
+		"alignment": "Lawfull Good",
+		"size": {
+			"height": 4.5,
+			"weight": 150
+		},
+		"speed": 25,
+		"language": [
+			"Common",
+			"Dwarvish"
+		],
+		"proficiencies": {
+			"weapons": [
+				"Battleaxe",
+				"Light Hammer",
+				"Warhammer"
+			],
+			"tools": [
+				"Smith's Tools",
+				"Brewer's Supplies",
+				"Mason's Tools"
+			]
+		},
+		"extra_abilities": [
+			{
+				"name": "Dwarven Strength",
+				"description": "Your speed is not reduced by wearing heavy armor."
+			},
+			{
+				"name": "Darkvision",
+				"description": "Your eyesight is not reduced in dark or dim conditions."
+			},
+			{
+				"name": "Dwarven Resilience",
+				"description": "You have advantage on saving throws against poison, and you have resistance against poison damage"
+			}
+		]
+	},
+	"elf": {
+		"description": "Elves are a magical people of otherworldly grace, living in the world but not entirely part of it. They live in places of ethereal beauty, in the midst of ancient forests or in silvery spires glittering with faerie light, where soft music drifts through the air and gentle fragrances waft on the breeze. Elves love nature and magic, art and artistry, music and poetry, and the good things of the world",
+		"plural": "Elves",
+		"name": "elf",
+		"sampleNames": [
+			"Gilroch",
+			"Laiva",
+			"Esgalnor",
+			"Agarvorn",
+			"Randur",
+			"Amluguilos",
+			"Amdiredhellen",
+			"Amdiruireb"
+		],
+		"ability_score_increase": {
+			"dexterity": 2
+		},
+		"age": {
+			"young": 100,
+			"lifespan": 750
+		},
+		"alignment": "Chaotic Good",
+		"size": {
+			"height": 5.5,
+			"weight": 120
+		},
+		"speed": 30,
+		"language": [
+			"Common",
+			"Elvish"
+		],
+		"extra_abilities": [
+			{
+				"name": "Keen Senses",
+				"description": "You have proficiency in the Perception skill."
+			},
+			{
+				"name": "Darkvision",
+				"description": "Your eyesight is not reduced in dark or dim conditions."
+			},
+			{
+				"name": "Fey Ancestry",
+				"description": "You have advantage on saving throws against being charmed, and magic can’t put you to sleep."
+			}
+		]
+	},
+	"halfling": {
+		"description": "The comforts of home are the goals of most halflings’ lives: a place to settle in peace and quiet, far from marauding monsters and clashing armies; a blazing fire and a generous meal; fine drink and fine conversation. Though some halflings live out their days in remote agricultural communities, others form nomadic bands that travel constantly, lured by the open road and the wide horizon to discover the wonders of new lands and peoples. But even these wanderers love peace, food, hearth, and home, though home might be a wagon jostling along an dirt road or a raft floating downriver.",
+		"plural": "Halflings",
+		"name": "halfling",
+		"sampleNames": [
+			"Errich",
+			"Finnan", 
+			"Garret",
+			"Lindal",
+			"Lyle", 
+			"Merric",
+			"Callie",
+			"Cora",
+			"Euphemia",
+			"Jillian"
+		],
+		"ability_score_increase": {
+			"dexterity": 2
+		},
+		"age": {
+			"young": 20,
+			"lifespan": 150
+		},
+		"alignment": "Chaotic Good",
+		"size": {
+			"height": 3,
+			"weight": 40,
+			"small": true
+		},
+		"speed": 25,
+		"language": [
+			"Common",
+			"Halfling"
+		],
+		"extra_abilities": [
+			{
+				"name": "Lucky",
+				"description": "When you roll a one you may reroll the die. You must use the value of the 2nd roll"
+			},
+			{
+				"name": "Brave",
+				"description": "You have advantage on saving throws against being frightened."
+			},
+			{
+				"name": "Halfling Nimbleness",
+				"description": "You can move through the space of any creature that is of a size larger than yours."
+			}
+		]
+	},
+	"human": {
+		"plural": "Humans",
+		"description": "In the reckonings of most worlds, humans are the youngest of the common races, late to arrive on the world scene and short-lived in comparison to dwarves, elves, and dragons. Perhaps it is because of their shorter lives that they strive to achieve as much as they can in the years they are given. Or maybe they feel they have something to prove to the elder races, and that’s why they build their mighty empires on the foundation of conquest and trade. Whatever drives them, humans are the innovators, the achievers, and the pioneers of the worlds.",
+		"name": "human",
+		"sampleNames": [
+			"Marcon",
+			"Pieron",
+			"Rimardo",
+			"Romero",
+			"Salazar",
+			"Balama",
+			"Dona",
+			"Faila",
+			"Jalana",
+			"Luisa"
+		],
+		"ability_score_increase": {
+			"all": 1
+		},
+		"age": {
+			"young": 18,
+			"lifespan": 80
+		},
+		"alignment": "General",
+		"size": {
+			"height": 5.5,
+			"weight": 160
+		},
+		"speed": 30,
+		"language": [
+			"Common",
+			"a language of your choice"
+		]
+	}
+}

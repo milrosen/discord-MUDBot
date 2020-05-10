@@ -17,5 +17,7 @@
     "sequelize": "^5.21.7",
     "sequelize-cli": "^5.5.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "eslint-config-esnext": "^4.0.0"
+  }
 }

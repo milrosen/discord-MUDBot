@@ -34,9 +34,9 @@ clientDs.once('ready', () => {
 // command handler
 async function commandHandler(): Promise<void> {
 	for (const file of commandFiles) {
-		const command: Command = await import(`./commands/${file}`)
+		const command: Command = await import(`./commands/${file}`);
 
-		// set  a new item in the Collection
+		// set a new item in the Collection
 		// with the key as the command name and the value as the exported module
 		commands.set(command.name, command);
 	}

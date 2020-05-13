@@ -1,11 +1,11 @@
 {
-	"extends": ["esnext"],
+	"extends": ["plugin:@typescript-eslint/recommended"],
 	"env": {
 		"node": true,
 		"es6": true
 	},
 	"parserOptions": {
-		"ecmaVersion": 2020
+		"ecmaVersion": 2019
 	},
 	"rules": {
 		"brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
@@ -25,7 +25,7 @@
 		"no-lonely-if": "error",
 		"no-multi-spaces": "error",
 		"no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1, "maxBOF": 0 }],
-		"no-shadow": ["error", { "allow": ["err", "resolve", "reject", "message"] }],
+		"no-shadow": ["error", { "allow": ["err", "resolve", "reject"] }],
 		"no-trailing-spaces": ["error"],
 		"no-var": "error",
 		"object-curly-spacing": ["error", "always"],

@@ -1,0 +1,9 @@
+{
+	"compilerOptions": {
+		"target": "ES2019",
+		"module": "CommonJS",
+		"watch": true,
+		"resolveJsonModule": true,
+		"moduleResolution": "node"
+	}
+}

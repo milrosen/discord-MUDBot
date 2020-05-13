@@ -14,66 +14,173 @@
 			]
 		},
 		"starting_equipment": [
-			"light crossbow",
-			"20 bolts",
-			"dagger",
-			"dagger"
+			
 		],
-		"class_table": [
-			{
-				"cantrips_known": [4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
-				"spells_known": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 12, 13, 13, 14, 14, 15, 15, 15, 15],
-				"spell_slots": [
-					[2],
-					[3],
-					[4, 2],
-					[4, 3],
-					[4, 3, 2],
-					[4, 3, 3],
-					[4, 3, 3, 1],
-					[4, 3, 3, 2],
-					[4, 3, 3, 3, 1],
-					[4, 3, 3, 3, 2],
-					[4, 3, 3, 3, 2, 1],
-					[4, 3, 3, 3, 2, 1],
-					[4, 3, 3, 3, 2, 1, 1],
-					[4, 3, 3, 3, 2, 1, 1],
-					[4, 3, 3, 3, 2, 1, 1, 1],
-					[4, 3, 3, 3, 2, 1, 1, 1],
-					[4, 3, 3, 3, 2, 1, 1, 1, 1],
-					[4, 3, 3, 3, 3, 1, 1, 1, 1],
-					[4, 3, 3, 3, 3, 2, 1, 1, 1],
-					[4, 3, 3, 3, 3, 2, 2, 1, 1]
-				]
-			}
+		"class_table": {
+			"cantrips_known": [4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
+			"spells_known": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 12, 13, 13, 14, 14, 15, 15, 15, 15],
+			"spell_slots": [
+				[2],
+				[3],
+				[4, 2],
+				[4, 3],
+				[4, 3, 2],
+				[4, 3, 3],
+				[4, 3, 3, 1],
+				[4, 3, 3, 2],
+				[4, 3, 3, 3, 1],
+				[4, 3, 3, 3, 2],
+				[4, 3, 3, 3, 2, 1],
+				[4, 3, 3, 3, 2, 1],
+				[4, 3, 3, 3, 2, 1, 1],
+				[4, 3, 3, 3, 2, 1, 1],
+				[4, 3, 3, 3, 2, 1, 1, 1],
+				[4, 3, 3, 3, 2, 1, 1, 1],
+				[4, 3, 3, 3, 2, 1, 1, 1, 1],
+				[4, 3, 3, 3, 3, 1, 1, 1, 1],
+				[4, 3, 3, 3, 3, 2, 1, 1, 1],
+				[4, 3, 3, 3, 3, 2, 2, 1, 1]
+			],
+			"features": [
+				["spellcasting", "draconic_resilience"],
+				["font_of_magic"],
+				["metamagic"],
+				["ability_score_improvement"],
+				[],
+				["elemental_affinity"],
+				[],
+				["ability_score_improvement"],
+				[],
+				["metamagic"],
+				[],
+				["ability_score_improvement"],
+				[],
+				["dragon_wings"],
+				[],
+				["ability_score_improvement"],
+				["metamagic"],
+				["draconic_presence"],
+				["ability_score_improvement"],
+				["sorcerous_restoration"]
+			]
+		},
+		"types": [
+			"Acid", "Cold", "Fire", "Lightning", "Poison"
 		]
 	},
-	"types": [
-		"Acid", "Cold", "Fire", "Lightning", "Poison"
-	],
-	"unlocked_abilities": [
-		{
-			"level": 1,
-			"name": "Draconic Resilience",
-			"description": "when you level up, your HP max increases by one. When you aren't wearing armor your AC is equal to 13 + your dex"
+	"fighter": {
+		"hit_die": 10,
+		"name": "fighter",
+		"plural": "Fighters",
+		"description": "A master of all styles of combat, fighters can stand strong in the front lines wearing glittering plate or pelt their foes from afar with a crossbow",
+		"proficiencies": {
+			"armor": "all",
+			"weapons": [
+				"simple", "martial"
+			],
+			"saving_throws": [
+				"strenght", "constitution"
+			]
 		},
-		{
-			"level": 6,
-			"name": "Elemental Affinity",
-			"description": "When you cast a spell that deals damage of the type you've chosen, add your charisma modefier to the damage of the spell, you may spend one sorcery point to gain resistance to that damage type"
-		},
-		{
-			"level": 14,
-			"name": "Dragon Wings",
-			"description": "As a bonus action on your turn, you may choose to manifest dragon wings on your back, you gain a flight speed equal to your current speed"
-		},
-		{
-			"level": 18,
-			"name": "Draconic Presence",
-			"description": "You may spend 5 Sorcery Points to draw on your draconic power and exude an aura of either fear or awe."
+		"starting_equipment": [
+			
+		],
+		"ability_score_improvement": [4, 6, 8, 12, 14, 16, 19],
+		"types": [
+			"archery", "defence", "dueling", "great_weapon_fighting", "protection", "two_weapon_fighting"
+		],
+		"class_table": {
+			"features": [
+				["fighting_style", "second_wind"],
+				["action_surge"],
+				["improved_critical"],
+				["ability_score_improvement"],
+				["extra_attack"],
+				["ability_score_improvement"],
+				["remarkable_athlete"],
+				["ability_score_improvement"],
+				["indomitable"],
+				["additional_fighting_style"],
+				["extra_attack"],
+				["ability_score_improvement"],
+				["indomitable"],
+				["ability_score_improvement"],
+				["superior_critical"],
+				["ability_score_improvement"],
+				["action_surge", "indomitable"],
+				["survivor"],
+				["ability_score_improvement"],
+				["extra_attack"]
+			]
 		}
-	],
-	"fighter": {},
-	"bard": {},
-	"ranger": {}
+	},
+	"bard": {
+		"hit_die": 8,
+		"name": "bard",
+		"plural": "Bards",
+		"description": "Embued with Dragon Blood at some time in your characters past, Sorcerers are able to weild raw and powerfull elemental magics to devastate their foes.",
+		"proficiencies": {
+			"armor": "light_armour",
+			"weapons": [
+				"simple_weapons", "hand_crossbows", "longswords", "rapiers", "shortswords"
+			],
+			"saving_throws": [
+				"dexterity", "charisma"
+			]
+		},
+		"starting_equipment": [
+
+		],
+		"class_table": {
+			"cantrips_known": [4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
+			"spells_known": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 12, 13, 13, 14, 14, 15, 15, 15, 15],
+			"spell_slots": [
+				[2],
+				[3],
+				[4, 2],
+				[4, 3],
+				[4, 3, 2],
+				[4, 3, 3],
+				[4, 3, 3, 1],
+				[4, 3, 3, 2],
+				[4, 3, 3, 3, 1],
+				[4, 3, 3, 3, 2],
+				[4, 3, 3, 3, 2, 1],
+				[4, 3, 3, 3, 2, 1],
+				[4, 3, 3, 3, 2, 1, 1],
+				[4, 3, 3, 3, 2, 1, 1],
+				[4, 3, 3, 3, 2, 1, 1, 1],
+				[4, 3, 3, 3, 2, 1, 1, 1],
+				[4, 3, 3, 3, 2, 1, 1, 1, 1],
+				[4, 3, 3, 3, 3, 1, 1, 1, 1],
+				[4, 3, 3, 3, 3, 2, 1, 1, 1],
+				[4, 3, 3, 3, 3, 2, 2, 1, 1]
+			],
+			"features": [
+				["spellcasting", "draconic_resilience"],
+				["font_of_magic"],
+				["metamagic"],
+				["ability_score_improvement"],
+				[],
+				["elemental_affinity"],
+				[],
+				["ability_score_improvement"],
+				[],
+				["metamagic"],
+				[],
+				["ability_score_improvement"],
+				[],
+				["dragon_wings"],
+				[],
+				["ability_score_improvement"],
+				["metamagic"],
+				["draconic_presence"],
+				["ability_score_improvement"],
+				["sorcerous_restoration"]
+			]
+		},
+		"types": [
+			"Acid", "Cold", "Fire", "Lightning", "Poison"
+		]
+	}
 }
